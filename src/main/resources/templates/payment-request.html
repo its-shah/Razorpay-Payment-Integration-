@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name = "viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>RazorPay</title>
+</head>
+<body>
+    <h2>Order Summary</h2>
+    <p>Amount: 500.00</p>
+
+<button id="payNowButton">Pay Now</button>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+    var options  = {
+        "key": "rzp_test_Qs18SOI4Tflx7U",
+        "amount" : 500000,
+        "currency": "INR",
+        "name": "Pankaj Sir Academy",
+        "description":"Test Payment",
+        "image" : "",
+        "order_id" : "order_NVBQIMZUVe1C5W",
+        "handler": function(response){
+            console.log(response);
+        },
+        "prefill" :{
+            "name": "Customer Name",
+            "email": "customer@example.com",
+            "contact": "9876543210"
+        },
+        "notes" :{
+            "notes_key_1": "Tea, Earl Grey, Hot"
+        },
+        "theme" : {
+            "color":"#3399cc"
+        }
+    };
+
+    var rzp = new Razorpay(options);
+
+    document.getElementById('payNowButton').addEventListener('click', function(){
+        rzp.open();
+    });
+
+</script>
+</body>
+</html>
